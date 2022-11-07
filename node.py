@@ -50,6 +50,20 @@ class single_list:
                 if curr_node.next == None:
                     self.tail = curr_node
 
+    def remove_after(self, node):
+        if self.head == self.tail or node == self.tail:
+            return -1
+        curr_node = self.head
+        while curr_node != node:
+            curr_node = curr_node.next
+        if curr_node == node:
+            if curr_node.next == self.tail:
+                self.tail = curr_node
+                curr_node.next = None
+            elif curr_node.next.next != None:
+                curr_node.next = curr_node.next.next
+        return -1
+        
 
 if __name__ == '__main__':
     node1 = single_node(10)
