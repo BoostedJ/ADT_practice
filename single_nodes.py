@@ -30,8 +30,22 @@ class single_list:
                     break
                 curr_node = curr_node.next
             self.tail = node
+
+    def prepend(self, node):
+        temp_head = self.head
+        self.head = node
+        node.next = temp_head
 	
+    def insert_after(self, to_insert, node_after):
+        curr_node = self.head
+        while curr_node != node_after:
+            curr_node.next
+       # if curr_node == node_after:
+            #if 
+
     def remove(self, node):
+        if self.head == None:
+            return -1
         curr_node = self.head
         if self.head == node:
             if self.tail == node:
@@ -64,15 +78,19 @@ class single_list:
                 curr_node.next = curr_node.next.next
         return -1
         
+    def get_length(self):
+        curr_node = self.head
+        i = 0
+        while curr_node != None:
+            curr_node = curr_node.next
+            i += 1
+        return i
 
 if __name__ == '__main__':
-    node1 = single_node(10)
-    node2 = single_node(20)
-    node3 = single_node(30)
+    node1, node2, node3, node4, node5 = [single_node(i*10) for i in range(1, 6)]
+    nodes = [node1, node2, node3, node4, node5]
     list1 = single_list()
-    list2 = single_list()
-    list1.append(node1)
-    list1.append(node2)
-    list1.append(node3)
+    for node in nodes:
+        list1.append(node)
     list1.display()
-    list2.display()
+    print(list1.get_length())
