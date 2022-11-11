@@ -36,9 +36,9 @@ class single_list:
         if index >= length:
             return -1
         curr_node = self.head
-        for index in range(length):
+        for _ in range(index):
             curr_node = curr_node.next
-        self.remove(curr_node)
+        self.remove(curr_node.data)
 
     def append(self, value):
         if not isinstance(value, single_node):
