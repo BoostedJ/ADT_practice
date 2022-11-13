@@ -18,6 +18,18 @@ class single_list:
             curr_node = curr_node.next
         print(f'{curr_node.data}')
 
+    def display_reverse(self):
+        temp_tail = self.tail
+        curr_node = self.head
+        if self.tail != self.head:
+            for _ in range(self.get_length()-1):
+                while curr_node.next != temp_tail:
+                    curr_node = curr_node.next
+                print(temp_tail.data, end=', ')
+                temp_tail = curr_node
+                curr_node = self.head
+        print(self.head.data)
+
     def search(self, value):
         curr_node = self.head
         i = 0
@@ -116,7 +128,7 @@ class single_list:
             i += 1
         return i
 
-    # TODO: PrintReverse, Sort
+    # TODO: Sort
 
 if __name__ == '__main__':
     nodes = [single_node(i*10) for i in range(1, 11)]
@@ -125,5 +137,6 @@ if __name__ == '__main__':
     for node in nodes:
         list1.append(node)
     list1.remove_at_index(2)
+    list1.display_reverse()
     list1.display()
     print(list1.get_length())
