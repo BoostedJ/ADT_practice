@@ -55,15 +55,6 @@ class SingleList:
             print(f'No node with data {value} was found')
             return -1
 
-    def remove_at_index(self, index):
-        length = self.get_length()
-        if index >= length:
-            return -1
-        curr_node = self.head
-        for _ in range(index):
-            curr_node = curr_node.next
-        self.remove(curr_node.data)
-
     def append(self, value):
         if not isinstance(value, Node):
             value = Node(value)
@@ -89,11 +80,12 @@ class SingleList:
             new_node = value_to_insert if isinstance(value_to_insert, Node) else Node(value_to_insert)
             new_node.next = curr_node.next
             curr_node.next = new_node
-            print(curr_node.next.data)
         except AttributeError:
-            print(f"No node with data {node.data}")
+            print(f"No node with data {value}")
 
     def remove(self, value):
+        if isinstance(value, Node):
+            value = value.data
         curr_node = self.head
         if self.head.data == value:
             if self.tail.data == value:
@@ -114,6 +106,15 @@ class SingleList:
             except AttributeError:
                 print(f"No node with data {value}")
                 return -1
+
+    def remove_at_index(self, index):
+        length = self.get_length()
+        if index >= length:
+            return -1
+        curr_node = self.head
+        for _ in range(index):
+            curr_node = curr_node.next
+        self.remove(curr_node.data)
 
     def remove_after(self, value):
         if self.head == self.tail or value == self.tail.data:
@@ -157,6 +158,7 @@ if __name__ == '__main__':
     list2 = SingleList()
     for node in nodes:
         list1.append(node)
+    list1.insert_after(15, 10)
     list1.append(5)
     list1.display()
     print(list1.get_mid().data)
